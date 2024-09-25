@@ -13,7 +13,7 @@ function App() {
     async function getIndonesiaNews() {
       const res = await fetch(url);
       const data = await res.json();
-      console.log(data.response.docs);
+      // console.log(data.response.docs);
       setIndonesiaNews(data.response.docs);
     }
     getIndonesiaNews();
