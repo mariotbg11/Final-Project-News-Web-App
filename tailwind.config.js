@@ -5,6 +5,7 @@ export default {
     extend: {
       fontFamily: {
         dmsans: ["DM Sans", "system-ui"],
+        lora: ["Lora", "serif"],
       },
     },
   },

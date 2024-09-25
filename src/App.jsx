@@ -13,7 +13,7 @@ function App() {
     async function getIndonesiaNews() {
       const res = await fetch(url);
       const data = await res.json();
-      // console.log(data);
+      console.log(data.response.docs);
       setIndonesiaNews(data.response.docs);
     }
     getIndonesiaNews();
@@ -26,7 +26,7 @@ function App() {
     async function getProgrammingNews() {
       const res = await fetch(url);
       const data = await res.json();
-      // console.log(data);
+      // console.log(data.response.docs);
       setProgrammingNews(data.response.docs);
     }
     getProgrammingNews();
