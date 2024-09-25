@@ -15,7 +15,7 @@ function NewsItem({ headline, image, alt, paragraph, url, isLarge }) {
       >
         <figure className={isLarge ? "lg:w-1/2" : ""}>
           <img
-            src={image}
+            src={`http://nytimes.com${image}`}
             alt={alt}
             className={`w-full ${
               isLarge ? "md:h-72 lg:h-[425px]" : "md:h-72 lg:h-52"
