@@ -1,6 +1,8 @@
+import { Link } from "react-router-dom";
+
 function Navbar() {
   return (
-    <nav className="py-3 md:px-20">
+    <nav className="py-3 lg:px-20">
       <div className="navbar bg-base-100 pr-5">
         <div className="navbar-start">
           <div className="dropdown">
@@ -25,10 +27,10 @@ function Navbar() {
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow font-medium uppercase"
             >
               <li>
-                <a>Indonesia</a>
+                <Link to="/">Indonesia</Link>
               </li>
               <li>
-                <a>Programming</a>
+                <Link to="/programming">Programming</Link>
               </li>
               <li>
                 <a>Save</a>
@@ -43,10 +45,10 @@ function Navbar() {
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1 font-medium uppercase">
             <li>
-              <a>Indonesia</a>
+              <Link to="/">Indonesia</Link>
             </li>
             <li>
-              <a>Programming</a>
+              <Link to="/programming">Programming</Link>
             </li>
             <li>
               <a>Save</a>
