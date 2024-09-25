@@ -15,22 +15,28 @@ function NewsItem({ headline, image, alt, paragraph, url, isLarge }) {
       >
         <figure className={isLarge ? "lg:w-1/2" : ""}>
           <img
-            src={`http://nytimes.com${image}`}
+            src={image}
             alt={alt}
             className={`w-full ${
-              isLarge ? "md:h-72 lg:h-[425px]" : "md:h-72 lg:h-52"
+              isLarge ? "h-72 md:h-96 lg:h-[425px]" : "h-72 md:h-96 lg:h-52"
             } object-cover rounded-lg`}
           />
         </figure>
         <div className={`px-1 ${isLarge ? "lg:card-body lg:w-1/2" : ""}`}>
           <h2
             className={`card-title font-lora mt-3 ${
-              isLarge ? "lg:text-4xl leading-snug mb-2" : ""
+              isLarge ? "lg:text-4xl leading-snug mb-2" : "text-xl line-clamp-2"
             }`}
           >
             {headline}
           </h2>
-          <p className="text-sm mt-3">{paragraph}</p>
+          <p
+            className={`text-sm mt-3 ${
+              isLarge ? "line-clamp-4 lg:line-clamp-none" : "line-clamp-4"
+            }`}
+          >
+            {paragraph}
+          </p>
           <div className="card-actions justify-between items-center mt-8">
             <a
               href="#"
@@ -40,6 +46,7 @@ function NewsItem({ headline, image, alt, paragraph, url, isLarge }) {
             </a>
             <a
               href={url}
+              target="_blank"
               className="text-orange-500 hover:text-orange-300 hover:underline"
             >
               Read more

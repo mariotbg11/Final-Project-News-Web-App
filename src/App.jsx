@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Header from "./components/Header";
 import Navbar from "./components/Navbar";
+import IndonesiaNews from "./components/IndonesiaNews";
 
 function App() {
   const [indonesiaNews, setIndonesiaNews] = useState([]);
@@ -13,7 +14,7 @@ function App() {
     async function getIndonesiaNews() {
       const res = await fetch(url);
       const data = await res.json();
-      // console.log(data.response.docs);
+      console.log(data.response.docs);
       setIndonesiaNews(data.response.docs);
     }
     getIndonesiaNews();
@@ -35,7 +36,8 @@ function App() {
   return (
     <>
       <Navbar />
-      <Header />;
+      <Header />
+      <IndonesiaNews articleNews={indonesiaNews} />
     </>
   );
 }
