@@ -1,7 +1,7 @@
 function Header() {
   return (
     <header>
-      <div className="container mx-auto px-4 md:px-24 py-8">
+      <div className="mx-auto px-4 lg:px-24 py-8">
         <div className="card bg-gray-100 text-neutral-content w-full rounded-lg">
           <div className="card-body items-center text-center text-black px-0">
             <h2 className="card-title uppercase text-xs font-medium spacing tracking-[0.2em] mb-1">
