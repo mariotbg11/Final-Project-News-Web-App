@@ -2,6 +2,7 @@ import { Outlet } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Header from "../components/Header";
 import CallToAction from "../components/CallToAction";
+import Footer from "../components/Footer";
 
 function WithHeaderAndSubcribe() {
   return (
@@ -10,6 +11,7 @@ function WithHeaderAndSubcribe() {
       <Header />
       <Outlet />
       <CallToAction />
+      <Footer />
     </>
   );
 }
