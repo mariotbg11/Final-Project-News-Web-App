@@ -1,7 +1,12 @@
+import { useSelector } from "react-redux";
 import NewsItem from "./NewsItem";
 import nytImage from "../assets/nyt.jpg";
 
-function NewsList({ articleNews }) {
+function NewsList({ type }) {
+  const articleNews = useSelector((state) =>
+    type === "indonesia" ? state.news.indonesiaNews : state.news.programmingNews
+  );
+
   return (
     <div className="grid grid-cols-1 lg:grid-cols-4 gap-x-5 gap-y-16 md:gap-y-20 lg:gap-y-10">
       {articleNews.length > 0 && (

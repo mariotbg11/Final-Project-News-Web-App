@@ -31,8 +31,10 @@ function NewsItem({ headline, image, alt, paragraph, url, isLarge }) {
             {headline}
           </h2>
           <p
-            className={`text-sm mt-3 ${
-              isLarge ? "line-clamp-4 lg:line-clamp-none" : "line-clamp-4"
+            className={`mt-3 h-20 ${
+              isLarge
+                ? "text-md line-clamp-4 lg:line-clamp-none"
+                : "text-sm line-clamp-4"
             }`}
           >
             {paragraph}

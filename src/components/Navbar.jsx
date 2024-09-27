@@ -33,10 +33,7 @@ function Navbar() {
                 <Link to="/programming">Programming</Link>
               </li>
               <li>
-                <a>Save</a>
-              </li>
-              <li>
-                <a>Blog</a>
+                <a>Saved</a>
               </li>
             </ul>
           </div>
@@ -51,16 +48,18 @@ function Navbar() {
               <Link to="/programming">Programming</Link>
             </li>
             <li>
-              <a>Save</a>
-            </li>
-            <li>
-              <a>Blog</a>
+              <a>Saved</a>
             </li>
           </ul>
         </div>
-        <div className="navbar-end">
+        <div className="navbar-end gap-2 hidden sm:flex">
+          <input
+            type="text"
+            placeholder="Type here..."
+            className="input input-bordered w-full max-w-52"
+          />
           <button className="btn bg-orange-500 text-base-100 rounded-lg px-6 border-none hover:bg-orange-300">
-            Sign in
+            Search
           </button>
         </div>
       </div>
