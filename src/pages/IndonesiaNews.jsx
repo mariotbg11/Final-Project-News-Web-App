@@ -1,22 +1,13 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { setIndonesiaNews } from "../features/news/newsSlice";
+import { fetchIndonesiaNews } from "../features/news/newsSlice";
 import NewsList from "../components/NewsList";
 
 function IndonesiaNews() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const apiKey = import.meta.env.VITE_NEWS_API_KEY;
-    const url = `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=Indonesia&fq=headline:("Indonesia") AND document_type:("article")&api-key=${apiKey}`;
-
-    async function getIndonesiaNews() {
-      const res = await fetch(url);
-      const data = await res.json();
-      console.log(data.response.docs);
-      dispatch(setIndonesiaNews(data.response.docs));
-    }
-    getIndonesiaNews();
+    dispatch(fetchIndonesiaNews());
   }, [dispatch]);
 
   return (

@@ -1,22 +1,13 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { setProgrammingNews } from "../features/news/newsSlice";
+import { fetchProgrammingNews } from "../features/news/newsSlice";
 import NewsList from "../components/NewsList";
 
 function ProgrammingNews() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const apiKey = import.meta.env.VITE_NEWS_API_KEY;
-    const url = `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=Computer&fq=section_name:("Technology")&api-key=${apiKey}`;
-
-    async function getProgrammingNews() {
-      const res = await fetch(url);
-      const data = await res.json();
-      // console.log(data.response.docs);
-      dispatch(setProgrammingNews(data.response.docs));
-    }
-    getProgrammingNews();
+    dispatch(fetchProgrammingNews());
   }, [dispatch]);
 
   return (

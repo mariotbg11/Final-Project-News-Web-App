@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBolt } from "@fortawesome/free-solid-svg-icons/faBolt";
 
 function Navbar() {
   return (
@@ -37,7 +39,12 @@ function Navbar() {
               </li>
             </ul>
           </div>
-          <a className="btn btn-ghost text-2xl px-2">flashNews⚡</a>
+          <a className="btn btn-ghost text-2xl px-2">
+            flashNews
+            <span className="text-orange-500 fa-sm">
+              <FontAwesomeIcon icon={faBolt} />
+            </span>
+          </a>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1 font-medium uppercase">

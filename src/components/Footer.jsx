@@ -1,3 +1,6 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBolt } from "@fortawesome/free-solid-svg-icons/faBolt";
+
 function Footer() {
   return (
     <footer className="bg-base-100">
@@ -5,7 +8,12 @@ function Footer() {
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
           <div>
             <div>
-              <a className="btn btn-ghost text-xl p-0">flashNews⚡</a>
+              <a className="btn btn-ghost text-xl p-0">
+                flashNews
+                <span className="text-orange-500 fa-sm">
+                  <FontAwesomeIcon icon={faBolt} />
+                </span>
+              </a>
             </div>
 
             <p className="mt-4 max-w-xs text-gray-500">
@@ -295,7 +303,11 @@ function Footer() {
         </div>
 
         <p className="text-xs text-gray-500">
-          &copy; {new Date().getFullYear()}. flashNews⚡. All rights reserved.
+          &copy; {new Date().getFullYear()}. flashNews{" "}
+          <span className="text-orange-500 fa-sm">
+            <FontAwesomeIcon icon={faBolt} />
+          </span>
+          . All rights reserved.
         </p>
       </div>
     </footer>

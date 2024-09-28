@@ -3,9 +3,42 @@ import NewsItem from "./NewsItem";
 import nytImage from "../assets/nyt.jpg";
 
 function NewsList({ type }) {
-  const articleNews = useSelector((state) =>
-    type === "indonesia" ? state.news.indonesiaNews : state.news.programmingNews
+  const { indonesiaNews, programmingNews, loading, error } = useSelector(
+    (state) => state.news
   );
+
+  const articleNews = type === "indonesia" ? indonesiaNews : programmingNews;
+
+  if (loading)
+    return (
+      <div className="flex flex-col justify-center items-center h-[600px]">
+        <span className="loading loading-dots loading-lg"></span>
+      </div>
+    );
+
+  if (error)
+    return (
+      <div className="flex flex-col justify-center items-center  h-[600px] w-full md:w-[600px] mx-auto">
+        <div role="alert" className="alert alert-error rounded-lg">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6 shrink-0 stroke-current"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+            />
+          </svg>
+          <span>
+            Something went wrong, unable to load content. Please try again later
+          </span>
+        </div>
+      </div>
+    );
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-4 gap-x-5 gap-y-16 md:gap-y-20 lg:gap-y-10">
