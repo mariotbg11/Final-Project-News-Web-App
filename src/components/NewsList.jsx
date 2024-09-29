@@ -3,11 +3,15 @@ import NewsItem from "./NewsItem";
 import nytImage from "../assets/nyt.jpg";
 
 function NewsList({ type }) {
-  const { indonesiaNews, programmingNews, loading, error } = useSelector(
-    (state) => state.news
-  );
+  const { indonesiaNews, programmingNews, searchNews, loading, error } =
+    useSelector((state) => state.news);
 
-  const articleNews = type === "indonesia" ? indonesiaNews : programmingNews;
+  const articleNews =
+    type === "indonesia"
+      ? indonesiaNews
+      : type === "programming"
+      ? programmingNews
+      : searchNews;
 
   if (loading)
     return (

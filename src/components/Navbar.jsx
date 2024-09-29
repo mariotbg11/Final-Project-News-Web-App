@@ -1,8 +1,21 @@
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBolt } from "@fortawesome/free-solid-svg-icons/faBolt";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Navbar() {
+  const [keywordSearch, setKeywordSearch] = useState("");
+  const navigate = useNavigate();
+
+  const handleSearchNews = (e) => {
+    e.preventDefault();
+    if (keywordSearch.trim()) {
+      navigate(`/search/${keywordSearch}`);
+      setKeywordSearch("");
+    }
+  };
+
   return (
     <nav className="py-3 lg:px-20">
       <div className="navbar bg-base-100 pr-5">
@@ -59,15 +72,19 @@ function Navbar() {
             </li>
           </ul>
         </div>
-        <div className="navbar-end gap-2 hidden sm:flex">
-          <input
-            type="text"
-            placeholder="Type here..."
-            className="input input-bordered w-full max-w-52"
-          />
-          <button className="btn bg-orange-500 text-base-100 rounded-lg px-6 border-none hover:bg-orange-300">
-            Search
-          </button>
+        <div className="navbar-end hidden sm:flex">
+          <form onSubmit={handleSearchNews} className="flex flex-row gap-2">
+            <input
+              type="text"
+              value={keywordSearch}
+              onChange={(e) => setKeywordSearch(e.target.value)}
+              placeholder="Type here..."
+              className="input input-bordered w-full max-w-52 rounded-lg"
+            />
+            <button className="btn bg-orange-500 text-base-100 rounded-lg px-6 border-none hover:bg-orange-300">
+              Search
+            </button>
+          </form>
         </div>
       </div>
     </nav>
