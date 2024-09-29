@@ -19,7 +19,20 @@ export const fetchProgrammingNews = createAsyncThunk(
   "news/fetchProgrammingNews",
   async () => {
     const apiKey = import.meta.env.VITE_NEWS_API_KEY;
-    const url = `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=Computer&fq=section_name:("Technology")&api-key=${apiKey}`;
+    const url = `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=Computer&fq=section_name:("Technology")AND document_type:("article")&api-key=${apiKey}`;
+
+    const res = await fetch(url);
+    const data = await res.json();
+    // console.log(data.response.docs);
+    return data.response.docs;
+  }
+);
+
+export const fetchSearchNews = createAsyncThunk(
+  "news/fetchSearchNews",
+  async (keyword) => {
+    const apiKey = import.meta.env.VITE_NEWS_API_KEY;
+    const url = `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${keyword}&fq=section_name:("World")AND document_type:("article")&api-key=${apiKey}`;
 
     const res = await fetch(url);
     const data = await res.json();
@@ -33,6 +46,7 @@ export const newsSlice = createSlice({
   initialState: {
     indonesiaNews: [],
     programmingNews: [],
+    searchNews: [],
     loading: false,
     error: null,
   },
@@ -65,10 +79,24 @@ export const newsSlice = createSlice({
         state.loading = false;
         state.error = action.error.message;
       });
+
+    // Handle Search News
+    builder
+      .addCase(fetchSearchNews.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(fetchSearchNews.fulfilled, (state, action) => {
+        state.loading = false;
+        state.searchNews = action.payload;
+      })
+      .addCase(fetchSearchNews.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      });
   },
 });
 
-export const { IndonesiaNews, ProgrammingNews, loading, error } =
+export const { indonesiaNews, programmingNews, searchNews, loading, error } =
   newsSlice.actions;
 
 export default newsSlice.reducer;

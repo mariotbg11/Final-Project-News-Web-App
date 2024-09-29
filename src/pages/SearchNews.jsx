@@ -1,16 +1,11 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { fetchProgrammingNews } from "../features/news/newsSlice";
+import { useParams } from "react-router-dom";
+import { fetchSearchNews } from "../features/news/newsSlice";
 import NewsList from "../components/NewsList";
 import { useNavigate } from "react-router-dom";
 
-function ProgrammingNews() {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(fetchProgrammingNews());
-  }, [dispatch]);
-
+function SearchNews() {
   const [keywordSearch, setKeywordSearch] = useState("");
   const navigate = useNavigate();
 
@@ -21,6 +16,15 @@ function ProgrammingNews() {
       setKeywordSearch("");
     }
   };
+
+  const { keyword } = useParams();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (keyword) {
+      dispatch(fetchSearchNews(keyword));
+    }
+  }, [dispatch, keyword]);
 
   return (
     <section>
@@ -35,19 +39,22 @@ function ProgrammingNews() {
                 placeholder="Type here..."
                 className="input input-bordered rounded-lg"
               />
-              <button className="btn bg-orange-500 text-base-100 rounded-lg w-full px-6 border-none hover:bg-orange-300">
+              <button
+                type="submit"
+                className="btn bg-orange-500 text-base-100 rounded-lg w-full px-6 border-none hover:bg-orange-300"
+              >
                 Search
               </button>
             </form>
           </div>
-          <h1 className="text-2xl md:text-3xl font-semibold text-center mb-8 md:mb-12 underline">
-            Programming/Tech News
+          <h1 className="text-2xl md:text-3xl font-semibold text-center mb-8 md:mb-12">
+            Result for : <span className="underline">{keyword} News</span>
           </h1>
-          <NewsList type="programming" />
+          <NewsList type="searchnews" />
         </div>
       </div>
     </section>
   );
 }
 
-export default ProgrammingNews;
+export default SearchNews;
