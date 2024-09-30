@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import IndonesiaNews from "./pages/IndonesiaNews";
 import ProgrammingNews from "./pages/ProgrammingNews";
 import SearchNews from "./pages/SearchNews";
+import SavedNews from "./pages/SavedNews";
 import WithHeaderAndSubcribe from "./layouts/WithHeaderAndSubscribe";
 import WithoutHeader from "./layouts/WithoutHeader";
 
@@ -12,7 +13,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <IndonesiaNews />,
+        element: <IndonesiaNews />, // Route ke halaman Indonesia/Home
       },
     ],
   },
@@ -22,17 +23,27 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/programming",
-        element: <ProgrammingNews />,
+        element: <ProgrammingNews />, // Route ke halaman Programming
       },
     ],
   },
   {
     path: "/search/:keyword",
-    element: <WithoutHeader />,
+    element: <WithoutHeader />, // Layout tanpa Header
     children: [
       {
         path: "/search/:keyword",
-        element: <SearchNews />,
+        element: <SearchNews />, // Route ke halaman Search
+      },
+    ],
+  },
+  {
+    path: "/saved",
+    element: <WithoutHeader />, // Layout tanpa Header
+    children: [
+      {
+        path: "/saved",
+        element: <SavedNews />, // Route ke halaman Saved
       },
     ],
   },

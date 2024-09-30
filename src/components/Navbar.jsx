@@ -48,16 +48,16 @@ function Navbar() {
                 <Link to="/programming">Programming</Link>
               </li>
               <li>
-                <a>Saved</a>
+                <Link to="/saved">Saved</Link>
               </li>
             </ul>
           </div>
-          <a className="btn btn-ghost text-2xl px-2">
+          <Link to="/" className="btn btn-ghost text-2xl px-2">
             flashNews
             <span className="text-orange-500 fa-sm">
               <FontAwesomeIcon icon={faBolt} />
             </span>
-          </a>
+          </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1 font-medium uppercase">
@@ -68,7 +68,7 @@ function Navbar() {
               <Link to="/programming">Programming</Link>
             </li>
             <li>
-              <a>Saved</a>
+              <Link to="/saved">Saved</Link>
             </li>
           </ul>
         </div>

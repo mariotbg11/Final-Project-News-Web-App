@@ -23,7 +23,10 @@ function NewsList({ type }) {
   if (error)
     return (
       <div className="flex flex-col justify-center items-center  h-[600px] w-full md:w-[600px] mx-auto">
-        <div role="alert" className="alert alert-error rounded-lg">
+        <div
+          role="alert"
+          className="alert alert-error flex flex-col md:flex-row justify-center items-center rounded-lg"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-6 w-6 shrink-0 stroke-current"
@@ -58,6 +61,7 @@ function NewsList({ type }) {
           }
           alt={articleNews[0].snippet}
           url={articleNews[0].web_url}
+          newsId={articleNews[0]._id}
           isLarge={true}
         />
       )}
@@ -76,6 +80,7 @@ function NewsList({ type }) {
               }
               alt={article.snippet}
               url={article.web_url}
+              newsId={article._id}
               isLarge={false}
             />
           ))}
