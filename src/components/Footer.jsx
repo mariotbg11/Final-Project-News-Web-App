@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBolt } from "@fortawesome/free-solid-svg-icons/faBolt";
 
@@ -8,12 +9,12 @@ function Footer() {
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
           <div>
             <div>
-              <a className="btn btn-ghost text-xl p-0">
+              <Link to="/" className="btn btn-ghost text-xl p-0">
                 flashNews
                 <span className="text-orange-500 fa-sm">
                   <FontAwesomeIcon icon={faBolt} />
                 </span>
-              </a>
+              </Link>
             </div>
 
             <p className="mt-4 max-w-xs text-gray-500">

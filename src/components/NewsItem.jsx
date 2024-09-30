@@ -1,7 +1,52 @@
+import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBookmark } from "@fortawesome/free-regular-svg-icons";
+import { faBookmark as regularBookmark } from "@fortawesome/free-regular-svg-icons";
+import { faBookmark as solidBookmark } from "@fortawesome/free-solid-svg-icons";
 
-function NewsItem({ headline, image, alt, paragraph, url, isLarge }) {
+function NewsItem({
+  headline,
+  image,
+  alt,
+  paragraph,
+  url,
+  isLarge,
+  newsId,
+  onDelete,
+}) {
+  const [isBookmarked, setIsBookmarked] = useState(false);
+  const [modalMessage, setModalMessage] = useState("");
+  const [showModal, setShowModal] = useState(false);
+
+  useEffect(() => {
+    // Check the news in the localStorage
+    const savedNews = JSON.parse(localStorage.getItem("savedNews")) || [];
+    const bookmarked = savedNews.some((news) => news.newsId === newsId);
+    setIsBookmarked(bookmarked);
+  }, [newsId]);
+
+  const handleSaveNews = () => {
+    let savedNews = JSON.parse(localStorage.getItem("savedNews")) || [];
+
+    if (isBookmarked) {
+      // If the news bookmarked, delete from localStorage
+      savedNews = savedNews.filter((news) => news.newsId !== newsId);
+      localStorage.setItem("savedNews", JSON.stringify(savedNews));
+      setModalMessage("News removed from saved!"); // Show modal removed from SAVED
+      if (onDelete) {
+        onDelete(newsId); // Call onDelete function for updating news list on SAVED page
+      }
+    } else {
+      // Add news to localStorage savedNews
+      const newsToSave = { headline, image, alt, paragraph, url, newsId };
+      savedNews.push(newsToSave);
+      localStorage.setItem("savedNews", JSON.stringify(savedNews));
+      setModalMessage("News added to saved"); // Show modal added to SAVED
+    }
+
+    setIsBookmarked(!isBookmarked); // Toggle icon bookmark
+    setShowModal(true); // Show modal when its click
+  };
+
   return (
     <div
       className={`relative overflow-hidden rounded-lg group ${
@@ -40,12 +85,14 @@ function NewsItem({ headline, image, alt, paragraph, url, isLarge }) {
             {paragraph}
           </p>
           <div className="card-actions justify-between items-center mt-8">
-            <a
-              href="#"
+            <button
+              onClick={handleSaveNews}
               className="px-2 py-1 text-base-100 bg-orange-500 hover:bg-orange-300 rounded-md"
             >
-              <FontAwesomeIcon icon={faBookmark} />
-            </a>
+              <FontAwesomeIcon
+                icon={isBookmarked ? solidBookmark : regularBookmark}
+              />
+            </button>
             <a
               href={url}
               target="_blank"
@@ -56,6 +103,22 @@ function NewsItem({ headline, image, alt, paragraph, url, isLarge }) {
           </div>
         </div>
       </div>
+
+      {showModal && (
+        <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-30">
+          <div className="modal-box">
+            <p className="py-4">{modalMessage}</p>
+            <div className="modal-action">
+              <button
+                onClick={() => setShowModal(false)}
+                className="mt-4 px-4 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-300"
+              >
+                OK
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
