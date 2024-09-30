@@ -51,7 +51,10 @@ function NewsList({ type }) {
     <div className="grid grid-cols-1 lg:grid-cols-4 gap-x-5 gap-y-16 md:gap-y-20 lg:gap-y-10">
       {articleNews.length > 0 && (
         <NewsItem
-          key={articleNews[0]._id}
+          key={
+            articleNews[0]._id ||
+            `${articleNews[0].headline.main}-${articleNews[0].web_url}`
+          } // Use _id if available, if not use the combined key
           headline={articleNews[0].headline.main}
           paragraph={articleNews[0].lead_paragraph}
           image={
@@ -61,29 +64,32 @@ function NewsList({ type }) {
           }
           alt={articleNews[0].snippet}
           url={articleNews[0].web_url}
-          newsId={articleNews[0]._id}
+          newsId={
+            articleNews[0]._id ||
+            `${articleNews[0].headline.main}-${articleNews[0].web_url}`
+          } // Use _id if available, if not use the combined key
           isLarge={true}
         />
       )}
       {articleNews.length > 1 &&
-        articleNews
-          .slice(1)
-          .map((article) => (
-            <NewsItem
-              key={article._id}
-              headline={article.headline.main}
-              paragraph={article.lead_paragraph}
-              image={
-                article.multimedia && article.multimedia.length > 0
-                  ? `http://www.nytimes.com/${article.multimedia[0].url}`
-                  : nytImage
-              }
-              alt={article.snippet}
-              url={article.web_url}
-              newsId={article._id}
-              isLarge={false}
-            />
-          ))}
+        articleNews.slice(1).map((article) => (
+          <NewsItem
+            key={article._id || `${article.headline.main}-${article.web_url}`} // Use _id if available, if not use the combined key
+            headline={article.headline.main}
+            paragraph={article.lead_paragraph}
+            image={
+              article.multimedia && article.multimedia.length > 0
+                ? `http://www.nytimes.com/${article.multimedia[0].url}`
+                : nytImage
+            }
+            alt={article.snippet}
+            url={article.web_url}
+            newsId={
+              article._id || `${article.headline.main}-${article.web_url}`
+            } // Use _id if available, if not use the combined key
+            isLarge={false}
+          />
+        ))}
     </div>
   );
 }
