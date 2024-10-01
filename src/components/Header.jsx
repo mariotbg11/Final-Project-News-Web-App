@@ -1,5 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBolt } from "@fortawesome/free-solid-svg-icons/faBolt";
+import { ReactTyped } from "react-typed";
 
 function Header() {
   return (
@@ -8,7 +9,13 @@ function Header() {
         <div className="card bg-gray-100 text-neutral-content w-full rounded-lg">
           <div className="card-body items-center text-center text-black px-0">
             <h2 className="card-title uppercase text-xs font-medium spacing tracking-[0.2em] mb-1">
-              Welcome to flashnews
+              Welcome to{" "}
+              <ReactTyped
+                strings={["flashNews"]}
+                typeSpeed={60}
+                backSpeed={60}
+                loop
+              />
               <span className="text-orange-500 fa-sm">
                 <FontAwesomeIcon icon={faBolt} />
               </span>

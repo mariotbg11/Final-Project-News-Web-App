@@ -2,7 +2,7 @@ function FaqAccordion() {
   return (
     <div className="flex flex-col gap-3 w-full md:w-1/2 mx-auto px-4 lg:px-24 py-16">
       <div className="text-center mb-6">
-        <h2 className="text-3xl font-bold mb-2">FAQ</h2>
+        <h2 className="text-2xl md:text-3xl font-bold mb-2">FAQ</h2>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
       </div>
       <div className="collapse collapse-plus bg-gray-100 rounded-lg">
