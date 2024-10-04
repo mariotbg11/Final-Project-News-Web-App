@@ -18,29 +18,16 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "/programming",
     element: <WithoutHeader />, // Layout tanpa Header
     children: [
       {
         path: "/programming",
         element: <ProgrammingNews />, // Route ke halaman Programming
       },
-    ],
-  },
-  {
-    path: "/search/:keyword",
-    element: <WithoutHeader />, // Layout tanpa Header
-    children: [
       {
         path: "/search/:keyword",
         element: <SearchNews />, // Route ke halaman Search
       },
-    ],
-  },
-  {
-    path: "/saved",
-    element: <WithoutHeader />, // Layout tanpa Header
-    children: [
       {
         path: "/saved",
         element: <SavedNews />, // Route ke halaman Saved
