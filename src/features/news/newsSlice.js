@@ -5,7 +5,7 @@ export const fetchIndonesiaNews = createAsyncThunk(
   "news/fetchIndonesiaNews",
   async () => {
     const apiKey = import.meta.env.VITE_NEWS_API_KEY;
-    const url = `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=Indonesia&fq=headline:("Indonesia") AND document_type:("article")&api-key=${apiKey}`;
+    const url = `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=Indonesia&type:"article"&api-key=${apiKey}`;
 
     const res = await fetch(url);
     const data = await res.json();
@@ -19,7 +19,7 @@ export const fetchProgrammingNews = createAsyncThunk(
   "news/fetchProgrammingNews",
   async () => {
     const apiKey = import.meta.env.VITE_NEWS_API_KEY;
-    const url = `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=Computer&fq=section_name:("Technology")AND document_type:("article")&api-key=${apiKey}`;
+    const url = `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=Computer&type:"article"&api-key=${apiKey}`;
 
     const res = await fetch(url);
     const data = await res.json();
@@ -32,7 +32,7 @@ export const fetchSearchNews = createAsyncThunk(
   "news/fetchSearchNews",
   async (keyword) => {
     const apiKey = import.meta.env.VITE_NEWS_API_KEY;
-    const url = `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${keyword}&fq=section_name:("World")AND document_type:("article")&api-key=${apiKey}`;
+    const url = `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${keyword}&type:"article"&api-key=${apiKey}`;
 
     const res = await fetch(url);
     const data = await res.json();

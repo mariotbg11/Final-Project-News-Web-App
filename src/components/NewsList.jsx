@@ -47,6 +47,14 @@ function NewsList({ type }) {
       </div>
     );
 
+  if (!articleNews || articleNews.length === 0) {
+    return (
+      <div className="text-center w-full py-10">
+        <p>No articles available.</p>
+      </div>
+    );
+  }
+
   return (
     <div className="grid grid-cols-1 lg:grid-cols-4 gap-x-5 gap-y-16 md:gap-y-20 lg:gap-y-10">
       {articleNews.length > 0 && (
@@ -56,13 +64,14 @@ function NewsList({ type }) {
             `${articleNews[0].headline.main}-${articleNews[0].web_url}`
           } // Use _id if available, if not use the combined key
           headline={articleNews[0].headline.main}
-          paragraph={articleNews[0].lead_paragraph}
+          paragraph={articleNews[0].abstract}
           image={
-            articleNews[0].multimedia && articleNews[0].multimedia.length > 0
-              ? `http://www.nytimes.com/${articleNews[0].multimedia[0].url}`
+            articleNews[0].multimedia.default.url &&
+            articleNews[0].multimedia.default.url.length > 0
+              ? `${articleNews[0].multimedia.default.url}`
               : nytImage
           }
-          alt={articleNews[0].snippet}
+          alt={articleNews[0].multimedia.caption}
           url={articleNews[0].web_url}
           newsId={
             articleNews[0]._id ||
@@ -76,13 +85,14 @@ function NewsList({ type }) {
           <NewsItem
             key={article._id || `${article.headline.main}-${article.web_url}`} // Use _id if available, if not use the combined key
             headline={article.headline.main}
-            paragraph={article.lead_paragraph}
+            paragraph={article.abstract}
             image={
-              article.multimedia && article.multimedia.length > 0
-                ? `http://www.nytimes.com/${article.multimedia[0].url}`
+              article.multimedia.default.url &&
+              article.multimedia.default.url.length > 0
+                ? `${article.multimedia.default.url}`
                 : nytImage
             }
-            alt={article.snippet}
+            alt={article.multimedia.caption}
             url={article.web_url}
             newsId={
               article._id || `${article.headline.main}-${article.web_url}`
